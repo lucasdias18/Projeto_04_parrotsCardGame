@@ -19,6 +19,7 @@ nav {
     width: 79%;
     margin: 47px auto 0px auto;
     display: flex;
+    flex-wrap: wrap;
     gap: 34px;
     justify-content: center;
 }
@@ -30,6 +31,12 @@ button {
     border: 1px solid #99CEA8;
     border-radius: 5px;
     position: relative;
+    transition: all 1s;
+    transform-style: preserve-3d;
+}
+
+.face {
+    backface-visibility: hidden;
 }
 
 button img {
@@ -37,8 +44,13 @@ button img {
     height: 100px;
 }
 
-.front {
+.back {
     position: absolute;
     top: 23px;
     left: 8.5px;
+    transform: rotateY(180deg);
+}
+
+.virar {
+    transform: rotateY(180deg);
 }
