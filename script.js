@@ -16,7 +16,6 @@ while (qtdeCartas%2!==0 || qtdeCartas < 4 || qtdeCartas > 14){
 
 let carta_jogo = cartas.slice(0, qtdeCartas);
 carta_jogo.sort(comparador);
-console.log(carta_jogo)
 
 function comparador(){
     return Math.random() - 0.5;
@@ -43,17 +42,14 @@ function cartaVirada(carta) {
     if (contador%2 !== 0) {
         carta1 = carta;
         l = carta.children[1].getAttribute('src');
-        console.log(l)
     }
 
     if (contador%2 === 0) {
         carta2 = carta;
         j = carta.children[1].getAttribute('src');
-        console.log(j)
         
 
         if (l !== j) {
-            console.log(l, j);
             setTimeout(jogadaErrada, 1000);
         }
 
@@ -61,23 +57,26 @@ function cartaVirada(carta) {
 
         if (cartasViradas.length === qtdeCartas) {
             setTimeout(alert,1000,`Você ganhou em ${contador/2} jogadas!`);
-            // let reinicio = setTimeout(prompt, 1200, 'Deseja reiniciar a partida? Responda com sim ou não.')
-            // if (reinicio === 'sim') {
-            //     Location.reload()
-            // }
-            // if (reinicio === 'não' || reinicio === 'nao') {
-            //     setTimeout(alert, 500, 'Obrigado!');
-            // }
-
-            // if (reinicio !== 'sim' || reinicio !== 'não' || reinicio !== 'naõ') {
-            //     setTimeout(alert, 1500, 'Resposta inválida! Responda com sim ou não.')
-            //     let reinicio = prompt ('Deseja reiniciar a partida? Responda com sim ou não.')
+            setTimeout(reiniciar, 1500);
         }
     }
 }
 
-
 function jogadaErrada() {
     carta1.classList.remove('virar');
     carta2.classList.remove('virar');
+}
+
+function reiniciar() {
+    let reinicio = prompt('Deseja reiniciar a partida? Responda com sim ou não.');
+    if (reinicio === 'sim') {
+        location.reload()
+    }
+    if (reinicio === 'não') {
+        alert('Partida finalizada. Obrigado!')
+    }
+    while (reinicio !== 'sim' && reinicio !== 'não') {
+        alert('Resposta inválida. Responda com sim ou não.')
+        reinicio = prompt('Deseja reiniciar a partida? Responda com sim ou não.')
+    }
 }
